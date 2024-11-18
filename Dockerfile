@@ -2,4 +2,4 @@
 FROM docker.n8n.io/n8nio/n8n
 
 
-RUN npm install cheerio mongodb sharp
+RUN npm install cheerio

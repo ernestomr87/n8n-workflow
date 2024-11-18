@@ -8,18 +8,11 @@ services:
       - "5678:5678"
     volumes:
       - n8n_data:/home/node/.n8n
-      - /home/ubuntu/keys/global-bundle.pem:/etc/ssl/certs/global-bundle.pem
     environment:
-      - N8N_CA_CERT_PATH=/etc/ssl/certs/global-bundle.pem
-      - WEBHOOK_URL=https://test2.pangeanic.com
+      - WEBHOOK_URL=n8n-workflow-production.up.railway.app
       - N8N_SECURE_COOKIE=false
-      - NODE_FUNCTION_ALLOW_EXTERNAL=cheerio,mongodb,sharp
+      - NODE_FUNCTION_ALLOW_EXTERNAL=cheerio
     restart: unless-stopped
-
-  sbd_server:
-    image: public.ecr.aws/b4j5l6c5/europeana/monadic.sbd_server:v1
-    ports:
-      - "81:80"
       
 volumes:
   n8n_data:
