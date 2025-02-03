@@ -6,8 +6,6 @@ services:
     container_name: n8n
     ports:
       - "5678:5678"
-    networks:
-      - dokploy-network
     volumes:
       - n8n_data:/home/node/.n8n
     environment:
@@ -16,16 +14,7 @@ services:
       - NODE_FUNCTION_ALLOW_EXTERNAL=cheerio
     command: sh -c "npm install cheerio && n8n start"
     restart: unless-stopped
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.n8n.rule=Host(`tudominio.com`)"
-      - "traefik.http.routers.n8n.tls=true"
-      - "traefik.http.services.n8n.loadbalancer.server.port=5678"
 
 volumes:
   n8n_data:
-    external: true
-
-networks:
-  dokploy-network:
     external: true
